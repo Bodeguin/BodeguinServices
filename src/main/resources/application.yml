@@ -1,23 +1,0 @@
-# MySQL
-spring:
-  datasource:  
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/bodeguin?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password: root
-  jpa:
-    database: MYSQL
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:      
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        dialect.storage_engine: innodb  boot:    admin:
-      context-path: /adm      ui:        title: "Bodeguin"      client:        instance:          name: "Bodeguin"
-        
-#admin        
-spring.boot.admin.client.url: http://localhost:8080/adm
-
-#ENDPOINTS
-management:  endpoints:    web:      exposure:        include:        - "*"
