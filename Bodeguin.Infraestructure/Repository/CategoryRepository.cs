@@ -6,6 +6,6 @@ namespace Bodeguin.Infraestructure.Repository
 {
     public class CategoryRepository : GenericRepository<Category, int>, ICategoryRepository
     {
-        public CategoryRepository(PostgreSqlContext context) : base(context) { }
+        public CategoryRepository(AppDbContext context) : base(context) { }
     }
 }

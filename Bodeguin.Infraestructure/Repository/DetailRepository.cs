@@ -6,6 +6,6 @@ namespace Bodeguin.Infraestructure.Repository
 {
     public class DetailRepository : GenericRepository<Detail, int>, IDetailRepository
     {
-        public DetailRepository(PostgreSqlContext context) : base(context) { }
+        public DetailRepository(AppDbContext context) : base(context) { }
     }
 }

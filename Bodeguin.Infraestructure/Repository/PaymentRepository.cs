@@ -6,6 +6,6 @@ namespace Bodeguin.Infraestructure.Repository
 {
     public class PaymentRepository : GenericRepository<PaymentType, int>, IPaymentRepository
     {
-        public PaymentRepository(PostgreSqlContext context) : base(context) { }
+        public PaymentRepository(AppDbContext context) : base(context) { }
     }
 }

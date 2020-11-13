@@ -6,6 +6,6 @@ namespace Bodeguin.Infraestructure.Repository
 {
     public class VoucherRepository : GenericRepository<Voucher, int>, IVoucherRepository
     {
-        public VoucherRepository(PostgreSqlContext context) : base(context) { }
+        public VoucherRepository(AppDbContext context) : base(context) { }
     }
 }

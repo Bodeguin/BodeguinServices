@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Bodeguin.Infraestructure.Migrations
 {
-    [DbContext(typeof(PostgreSqlContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class PostgreSqlContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

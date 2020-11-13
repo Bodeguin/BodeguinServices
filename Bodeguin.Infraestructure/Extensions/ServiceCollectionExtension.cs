@@ -11,7 +11,7 @@ namespace Bodeguin.Infraestructure.Extensions
     {
         public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<PostgreSqlContext>(options => 
+            services.AddDbContext<AppDbContext>(options => 
                 options.UseNpgsql(configuration.GetConnectionString("defaultConnection"))
             );
             return services;

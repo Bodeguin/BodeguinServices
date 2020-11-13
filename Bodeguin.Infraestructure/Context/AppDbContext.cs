@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Bodeguin.Infraestructure.Context
 {
-    public partial class PostgreSqlContext : DbContext
+    public partial class AppDbContext : DbContext
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Store> Stores { get; set; }
@@ -16,7 +16,7 @@ namespace Bodeguin.Infraestructure.Context
         public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<Detail> Details { get; set; }
 
-        public PostgreSqlContext(DbContextOptions<PostgreSqlContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

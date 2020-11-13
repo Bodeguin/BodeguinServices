@@ -19,7 +19,7 @@ namespace XUnitTest
         [Fact]
         public async void TestSignInSuccess()
         {
-            var options = new DbContextOptionsBuilder<PostgreSqlContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test").Options;
 
             var config = new MapperConfiguration(cfg => cfg.
@@ -44,7 +44,7 @@ namespace XUnitTest
             IOptions<JwtOptions> optionsSecurity = Options.Create(jwtOptions);
             IMapper mapper = new Mapper(config);
 
-            var context = new PostgreSqlContext(options);
+            var context = new AppDbContext(options);
             var unitOfWork = new UnitOfWork(context);
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
@@ -82,7 +82,7 @@ namespace XUnitTest
         [Fact]
         public async void TestSignInWrongUser()
         {
-            var options = new DbContextOptionsBuilder<PostgreSqlContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test").Options;
 
             var config = new MapperConfiguration(cfg => cfg.
@@ -107,7 +107,7 @@ namespace XUnitTest
             IOptions<JwtOptions> optionsSecurity = Options.Create(jwtOptions);
             IMapper mapper = new Mapper(config);
 
-            var context = new PostgreSqlContext(options);
+            var context = new AppDbContext(options);
             var unitOfWork = new UnitOfWork(context);
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
@@ -146,7 +146,7 @@ namespace XUnitTest
         [Fact]
         public async void TestSignInWrongPassword()
         {
-            var options = new DbContextOptionsBuilder<PostgreSqlContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test").Options;
 
             var config = new MapperConfiguration(cfg => cfg.
@@ -171,7 +171,7 @@ namespace XUnitTest
             IOptions<JwtOptions> optionsSecurity = Options.Create(jwtOptions);
             IMapper mapper = new Mapper(config);
 
-            var context = new PostgreSqlContext(options);
+            var context = new AppDbContext(options);
             var unitOfWork = new UnitOfWork(context);
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
@@ -210,7 +210,7 @@ namespace XUnitTest
         [Fact]
         public async void TestSignUpUserAlreadyExist()
         {
-            var options = new DbContextOptionsBuilder<PostgreSqlContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test").Options;
 
             var config = new MapperConfiguration(cfg =>
@@ -244,7 +244,7 @@ namespace XUnitTest
             IOptions<JwtOptions> optionsSecurity = Options.Create(jwtOptions);
             IMapper mapper = new Mapper(config);
 
-            var context = new PostgreSqlContext(options);
+            var context = new AppDbContext(options);
             var unitOfWork = new UnitOfWork(context);
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
@@ -286,7 +286,7 @@ namespace XUnitTest
         [Fact]
         public async void TestSignUpUserNotCorrect()
         {
-            var options = new DbContextOptionsBuilder<PostgreSqlContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test").Options;
 
             var config = new MapperConfiguration(cfg =>
@@ -320,7 +320,7 @@ namespace XUnitTest
             IOptions<JwtOptions> optionsSecurity = Options.Create(jwtOptions);
             IMapper mapper = new Mapper(config);
 
-            var context = new PostgreSqlContext(options);
+            var context = new AppDbContext(options);
             var unitOfWork = new UnitOfWork(context);
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
@@ -361,7 +361,7 @@ namespace XUnitTest
         [Fact]
         public async void TestSignUpUserCreated()
         {
-            var options = new DbContextOptionsBuilder<PostgreSqlContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test").Options;
 
             var config = new MapperConfiguration(cfg =>
@@ -395,7 +395,7 @@ namespace XUnitTest
             IOptions<JwtOptions> optionsSecurity = Options.Create(jwtOptions);
             IMapper mapper = new Mapper(config);
 
-            var context = new PostgreSqlContext(options);
+            var context = new AppDbContext(options);
             var unitOfWork = new UnitOfWork(context);
             var jwtFactory = new JWTFactory(optionsSecurity);
             var loginService = new LoginService(jwtFactory, unitOfWork, mapper);

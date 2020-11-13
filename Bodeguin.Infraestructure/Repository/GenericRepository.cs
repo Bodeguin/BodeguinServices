@@ -14,10 +14,10 @@ namespace Bodeguin.Infraestructure.Repository
         where TEntity : class
         where TId : IComparable<TId>
     {
-        protected PostgreSqlContext _context { get; }
+        protected AppDbContext _context { get; }
         protected DbSet<TEntity> DbSet { get; set; }
 
-        public GenericRepository(PostgreSqlContext context)
+        public GenericRepository(AppDbContext context)
         {
             _context = context;
             DbSet = _context.Set<TEntity>();

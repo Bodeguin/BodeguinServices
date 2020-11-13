@@ -1,55 +1,51 @@
-using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Bodeguin.Application.Communication.Response;
 using Bodeguin.Application.Service;
 using Bodeguin.Domain.Entity;
 using Bodeguin.Infraestructure.Context;
 using Bodeguin.Infraestructure.Repository;
 using Microsoft.EntityFrameworkCore;
+using System;
 using Xunit;
 
 namespace XUnitTest
 {
-    public class StoreUnitTest
+    public class CategoryUnitTest
     {
         [Fact]
-        public async void TestListStores()
+        public async void TestListCategories()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test").Options;
 
             var config = new MapperConfiguration(cfg => cfg.
-                CreateMap<Store, StoreResponse>()
-                    .ForMember(sr => sr.Id, sr => sr.MapFrom(s => s.Id))
-                    .ForMember(sr => sr.Name, sr => sr.MapFrom(s => s.Name))
-                    .ForMember(sr => sr.Direction, sr => sr.MapFrom(s => s.Direction))
-                    .ForMember(sr => sr.Latitude, sr => sr.MapFrom(s => s.Latitude))
-                    .ForMember(sr => sr.Longitude, sr => sr.MapFrom(s => s.Longitude))
+                CreateMap<Category, CategoryResponse>()
+                    .ForMember(cr => cr.Id, cr => cr.MapFrom(c => c.Id))
+                    .ForMember(cr => cr.Name, cr => cr.MapFrom(c => c.Name))
+                    .ForMember(cr => cr.UrlImage, cr => cr.MapFrom(c => c.UrlImage))
+                    .ForMember(cr => cr.NumProducts, cr => cr.MapFrom(c => c.Products.Count))
             );
-
             IMapper mapper = new Mapper(config);
             var context = new AppDbContext(options);
             var unitOfWork = new UnitOfWork(context);
-            var fakeStore = new Store()
+            var fakeCategory = new Category()
             {
                 Id = 1,
-                Name = "Tienda_01",
+                Name = "Fideos",
                 CreateAt = DateTime.Now,
                 Description = "Description",
-                Direction = "direction",
                 IsActive = true,
-                Latitude = 12.541246,
-                Longitude = -76.154879,
                 ModifiedAt = DateTime.Now,
-                Ruc = "20548716549"
+                UrlImage = "https://www.google.com"
             };
 
-            await unitOfWork.StoreRepository.AddAsync(fakeStore, null);
+            await unitOfWork.CategoryRepository.AddAsync(fakeCategory, null);
             await unitOfWork.SaveChangesAsync();
 
-            var storeService = new StoreService(unitOfWork, mapper);
-            var result = await storeService.GetStores();
+            var categoryService = new CategoryService(unitOfWork, mapper);
+            var result = await categoryService.GetCategories();
             Assert.True(result.Valid);
+            Assert.NotNull(result.Data);
         }
     }
 }

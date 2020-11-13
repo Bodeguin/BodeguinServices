@@ -6,6 +6,6 @@ namespace Bodeguin.Infraestructure.Repository
 {
     public class UserRepository : GenericRepository<User, int>, IUserRepository
     {
-        public UserRepository(PostgreSqlContext context) : base(context) { }
+        public UserRepository(AppDbContext context) : base(context) { }
     }
 }

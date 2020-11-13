@@ -6,7 +6,7 @@ namespace Bodeguin.Infraestructure.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly PostgreSqlContext _context;
+        private readonly AppDbContext _context;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IDetailRepository _detailRepository;
         private readonly IInventoryRepository _inventoryRepository;
@@ -16,7 +16,7 @@ namespace Bodeguin.Infraestructure.Repository
         private readonly IUserRepository _userRepository;
         private readonly IVoucherRepository _voucherRepository;
 
-        public UnitOfWork(PostgreSqlContext context)
+        public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }

@@ -6,6 +6,6 @@ namespace Bodeguin.Infraestructure.Repository
 {
     public class ProductRepository : GenericRepository<Product, int>, IProductRepository
     {
-        public ProductRepository(PostgreSqlContext context) : base(context) { }
+        public ProductRepository(AppDbContext context) : base(context) { }
     }
 }

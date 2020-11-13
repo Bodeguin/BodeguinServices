@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Bodeguin.Infraestructure.Migrations
 {
-    [DbContext(typeof(PostgreSqlContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20201027002159_InitialMigration")]
     partial class InitialMigration
     {
