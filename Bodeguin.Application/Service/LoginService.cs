@@ -10,8 +10,6 @@ using Bodeguin.Domain.Entity;
 using Bodeguin.Domain.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Security.Cryptography;
-using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace Bodeguin.Application.Service
@@ -34,7 +32,6 @@ namespace Bodeguin.Application.Service
             user = await _unitOfWork.UserRepository
                 .Find(x => x.Email.Equals(loginRequest.Email))
                 .FirstOrDefaultAsync();
-            string pass = Encript.EncriptText("123456");
             if (user is null || user.IsActive == false)
                 return new JsonResult<LoginResponse>(false, null, "The user doesn't exist", 1);
             if (user.Password.Trim() != Encript.EncriptText(loginRequest.Password.Trim()))
