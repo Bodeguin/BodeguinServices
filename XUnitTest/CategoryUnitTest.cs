@@ -16,7 +16,7 @@ namespace XUnitTest
         public async void TestListCategories()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg => cfg.
                 CreateMap<Category, CategoryResponse>()
@@ -46,6 +46,47 @@ namespace XUnitTest
             var result = await categoryService.GetCategories();
             Assert.True(result.Valid);
             Assert.NotNull(result.Data);
+        }
+
+        [Fact]
+        public async void TestProductsByCategory()
+        {
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
+
+            var config = new MapperConfiguration(cfg => cfg.
+                CreateMap<Product, ProductResponse>()
+                    .ForMember(pr => pr.Id, pr => pr.MapFrom(p => p.Id))
+                    .ForMember(pr => pr.Name, pr => pr.MapFrom(p => p.Name))
+                    .ForMember(pr => pr.Description, pr => pr.MapFrom(p => p.Description))
+                    .ForMember(pr => pr.UrlImage, pr => pr.MapFrom(p => p.UrlImage))
+                    .ForMember(pr => pr.NumStore, pr => pr.MapFrom(p => p.Inventories.Count))
+            );
+            IMapper mapper = new Mapper(config);
+            var context = new AppDbContext(options);
+            var unitOfWork = new UnitOfWork(context);
+            var fakeProduct = new Product
+            {
+                Id = 1,
+                Name = "Pescado",
+                Description = "Descripcion",
+                CategoryId = 2,
+                CreateAt = DateTime.Now,
+                ModifiedAt = DateTime.Now,
+                IsActive = true,
+                UrlImage = "https://wwww.google.com"
+            };
+
+            await unitOfWork.ProductRepository.AddAsync(fakeProduct, null);
+            await unitOfWork.SaveChangesAsync();
+
+            var categoryService = new CategoryService(unitOfWork, mapper);
+            var result = await categoryService.GetProductsByCategory(1);
+
+            Assert.True(result.Valid);
+            Assert.NotNull(result.Data);
+
+            context.Database.EnsureDeleted();
         }
     }
 }

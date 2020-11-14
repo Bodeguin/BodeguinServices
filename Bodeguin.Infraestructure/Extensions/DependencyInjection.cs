@@ -5,12 +5,11 @@ using Bodeguin.Domain.Entity;
 using Bodeguin.Domain.Interface;
 using Bodeguin.Infraestructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Bodeguin.Infraestructure.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public class DependencyInjection
     {
         public static void RegisterServices(IServiceCollection services)

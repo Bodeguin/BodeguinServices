@@ -20,7 +20,7 @@ namespace XUnitTest
         public async void TestSignInSuccess()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg => cfg.
                 CreateMap<User, LoginResponse>()
@@ -83,7 +83,7 @@ namespace XUnitTest
         public async void TestSignInWrongUser()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg => cfg.
                 CreateMap<User, LoginResponse>()
@@ -112,7 +112,7 @@ namespace XUnitTest
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
             {
-                Id = 2,
+                Id = 1,
                 CreateAt = DateTime.Now,
                 Direction = "Direction",
                 Dni = "72183382",
@@ -147,7 +147,7 @@ namespace XUnitTest
         public async void TestSignInWrongPassword()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg => cfg.
                 CreateMap<User, LoginResponse>()
@@ -176,7 +176,7 @@ namespace XUnitTest
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
             {
-                Id = 0,
+                Id = 1,
                 CreateAt = DateTime.Now,
                 Direction = "Direction",
                 Dni = "72183382",
@@ -211,7 +211,7 @@ namespace XUnitTest
         public async void TestSignUpUserAlreadyExist()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -249,7 +249,7 @@ namespace XUnitTest
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
             {
-                Id = 4,
+                Id = 1,
                 CreateAt = DateTime.Now,
                 Direction = "Direction",
                 Dni = "72183382",
@@ -287,7 +287,7 @@ namespace XUnitTest
         public async void TestSignUpUserNotCorrect()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -325,7 +325,7 @@ namespace XUnitTest
             var jwtFactory = new JWTFactory(optionsSecurity);
             var fakeUser = new User()
             {
-                Id = 10,
+                Id = 1,
                 CreateAt = DateTime.Now,
                 Direction = "Direction",
                 Dni = "72183382",
@@ -362,7 +362,7 @@ namespace XUnitTest
         public async void TestSignUpUserCreated()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg =>
             {

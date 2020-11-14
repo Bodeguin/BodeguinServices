@@ -5,10 +5,12 @@ using Bodeguin.Application.Security.Encript;
 using Bodeguin.Domain.Entity;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Bodeguin.Infraestructure.Mapper.Profiles
 {
+    [ExcludeFromCodeCoverage]
     public class UserProfile : Profile
     {
         public UserProfile()

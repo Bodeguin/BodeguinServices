@@ -16,7 +16,7 @@ namespace XUnitTest
         public async void TestListStores()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test").Options;
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             var config = new MapperConfiguration(cfg => cfg.
                 CreateMap<Store, StoreResponse>()

@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Bodeguin.Infraestructure.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)

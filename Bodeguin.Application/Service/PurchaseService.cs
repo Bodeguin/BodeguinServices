@@ -59,16 +59,16 @@ namespace Bodeguin.Application.Service
                 detail.Discount = 0;
                 detail.VoucherId = voucher.Id;
                 var inventory = await _unitOfWork.InventoryRepository.Find(x => x.Id == item.InventoryId).Include(x => x.Product).FirstOrDefaultAsync();
-                var invetoryUpdate = await _unitOfWork.InventoryRepository.Find(x => x.Id == item.InventoryId).FirstOrDefaultAsync();
+                var inventoryUpdate = await _unitOfWork.InventoryRepository.Find(x => x.Id == item.InventoryId).FirstOrDefaultAsync();
                 if (item.Quantity > inventory.Quantity)
                 {
                     var resutl = await _unitOfWork.VoucherRepository.DeleteAsync(voucher, new CartValidator());
                     await _unitOfWork.SaveChangesAsync();
                     return new JsonResult<string>(false, inventory.Product.Name , "Register Error", 4);
                 }
-                invetoryUpdate.Quantity -= detail.Quantity;
-                invetoryUpdate.ModifiedAt = time;
-                var resultUpdate = await _unitOfWork.InventoryRepository.UpdateAsync(invetoryUpdate, new InventoryValidator());
+                inventoryUpdate.Quantity -= detail.Quantity;
+                inventoryUpdate.ModifiedAt = time;
+                var resultUpdate = await _unitOfWork.InventoryRepository.UpdateAsync(inventoryUpdate, new InventoryValidator());
                 var resultDetail = await _unitOfWork.DetailRepository.AddAsync(detail, new CartDetailValidator());
                 if (!resultDetail.IsValid)
                     return new JsonResult<string>(false, null, "Register Error", 4);

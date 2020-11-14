@@ -27,7 +27,7 @@ namespace Bodeguin.Application.Service
         {
             var predicate = PredicateBuilder.New<Product>(true);
             predicate.And(x => x.IsActive == true);
-            if (!string.IsNullOrEmpty(search)) predicate.And(x => x.Name.ToLower().Contains(search));
+            if (!string.IsNullOrEmpty(search)) predicate.And(x => x.Name.ToLower().Contains(search.ToLower()));
             var products = await _unitOfWork.ProductRepository
                 .Find(predicate)
                 .Include(x => x.Inventories)
